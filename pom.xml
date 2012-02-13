@@ -9,14 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <repositories>
-        <repository>
-            <id>webapp-runner-repo</id>
-            <name>webapp runner repository on GitHub</name>
-            <url>http://jsimone.github.com/webapp-runner/repository/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -27,7 +19,7 @@
         <dependency>
             <groupId>com.github.jsimone</groupId>
             <artifactId>webapp-runner</artifactId>
-            <version>0.0.7</version>
+            <version>7.0.22</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -37,7 +29,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
+                <version>2.2</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
@@ -47,20 +39,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.3</version>
+                <version>2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
-                        <goals><goal>copy</goal></goals>
+                        <goals><goal>copy-dependencies</goal></goals>
                         <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.github.jsimone</groupId>
-                                    <artifactId>webapp-runner</artifactId>
-                                    <version>0.0.7</version>
-                                    <destFileName>webapp-runner.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
+                            <includeArtifactIds>webapp-runner</includeArtifactIds>
                         </configuration>
                     </execution>
                 </executions>
